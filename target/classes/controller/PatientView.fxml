@@ -33,11 +33,12 @@
       <TextField fx:id="searchTxtField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <TableView fx:id="patientTabView" GridPane.columnSpan="5" GridPane.rowIndex="2">
         <columns>
-          <TableColumn fx:id="firstNameCol" prefWidth="110.0" text="First name" />
-          <TableColumn fx:id="lastNameCol" prefWidth="110.0" text="Last name" />
-            <TableColumn fx:id="dateOfBirthCol" prefWidth="115.0" text="Date of Birth" />
-            <TableColumn fx:id="genderCol" prefWidth="100.0" text="Gender" />
-            <TableColumn fx:id="phoneCol" prefWidth="110.0" text="Phone" />
+            <TableColumn fx:id="patientIdCol" prefWidth="65.0" text="PatientID" />
+          <TableColumn fx:id="firstNameCol" prefWidth="102.0" text="First name" />
+          <TableColumn fx:id="lastNameCol" prefWidth="100.0" text="Last name" />
+            <TableColumn fx:id="dateOfBirthCol" prefWidth="125.0" text="Date of Birth" />
+            <TableColumn fx:id="genderCol" prefWidth="65.0" text="Gender" />
+            <TableColumn fx:id="phoneCol" prefWidth="89.0" text="Phone" />
         </columns>
       </TableView>
       <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitBtnAction" prefWidth="90.0" text="Exit" GridPane.columnIndex="4" GridPane.rowIndex="3" />

@@ -1,14 +1,20 @@
 package controller;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+import java.util.concurrent.TimeUnit;
 import java.io.IOException;
+
+import view.MessageView;
 
 /**
  * JavaFX App
@@ -21,17 +27,44 @@ public class App extends Application {
     private static final String PWRD = "Asst-2-Password";
     private static final String HOST = "172.105.191.27";
    
-    public Connection conn;
+    public Connection conn = null;
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("MenuView"));
-        stage.setScene(scene);
-        stage.show();
 
-        conn = estDBConnection();
+        Alert connMessage = MessageView.displayDBConnection(
+                                        "Connecting...");
+        connMessage.show();
+
+        try{
+            conn = estDBConnection();
+            
+        }catch(Exception e){
+            MessageView.displayException(e, "Database connection failed");
+        }
+
+        if(conn.equals(null)){
+            MessageView.displayError("Failed to establish connection to the database");
+            System.exit(0);
+        }
+        else{
+            connMessage.setContentText("Connection successful");
+            connMessage.close();
+
+            scene = new Scene(loadFXML("MenuView"));
+            stage.setScene(scene);
+            stage.show();
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent e) {
+                    MessageView.displayExitDialog(e);
+                }
+            });
+        }
+
+        
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -81,6 +114,12 @@ public class App extends Application {
             newStage.setScene(newScene);
             newStage.show();
             newStage.setTitle(title);
+            newStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent e) {
+                    MessageView.displayExitDialog(e);
+                }
+            });
         }catch (IOException e) {
             e.printStackTrace();
         }

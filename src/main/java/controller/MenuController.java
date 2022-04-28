@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import view.MessageView;
 
 public class MenuController {
 
@@ -25,7 +26,7 @@ public class MenuController {
 
     @FXML
     void exitBtnAction(ActionEvent event) {
-
+        MessageView.displayExitDialog(event);
     }
 
     @FXML

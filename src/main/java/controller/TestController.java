@@ -1,5 +1,7 @@
 package controller;
 
+import java.time.LocalDate;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.CovidTest;
 //import model.Patient;
+import view.MessageView;
 
 public class TestController {
 
@@ -32,19 +35,25 @@ public class TestController {
     private Label patientNameLabel;
 
     @FXML
+    private Label patientIdLabel;
+
+    @FXML
     private Label phoneLabel;
 
     @FXML
     private TableView<CovidTest> testTabView;
 
     @FXML
-    private TableColumn<CovidTest, ?> dateCol;
+    private TableColumn<CovidTest, Integer> testIdCol;
 
     @FXML
-    private TableColumn<CovidTest, ?> resultCol;
+    private TableColumn<CovidTest, LocalDate> dateCol;
 
     @FXML
-    private TableColumn<CovidTest, ?> methodCol;
+    private TableColumn<CovidTest, String> resultCol;
+
+    @FXML
+    private TableColumn<CovidTest, String> methodCol;
 
     @FXML
     void addTestBtnAction(ActionEvent event) {
@@ -58,7 +67,7 @@ public class TestController {
 
     @FXML
     void exitBtnAction(ActionEvent event) {
-
+        MessageView.displayExitDialog(event);
     }
 
 }

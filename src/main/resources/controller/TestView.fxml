@@ -21,25 +21,26 @@
       <RowConstraints vgrow="SOMETIMES" />
       <RowConstraints vgrow="SOMETIMES" />
       <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
     <RowConstraints vgrow="SOMETIMES" />
     <RowConstraints vgrow="SOMETIMES" />
     <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Patient" GridPane.rowIndex="1">
+      <Label text="Patient" GridPane.rowIndex="2">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
          <GridPane.margin>
-            <Insets left="10.0" />
+            <Insets left="20.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Date of birth" GridPane.rowIndex="2">
+      <Label text="Date of birth" GridPane.rowIndex="3">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
          <GridPane.margin>
-            <Insets left="10.0" />
+            <Insets left="20.0" />
          </GridPane.margin>
       </Label>
       <Label text="Patient Tests" GridPane.columnSpan="3" GridPane.halignment="CENTER">
@@ -50,38 +51,38 @@
             <Insets bottom="10.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Phone number" GridPane.rowIndex="3">
+      <Label text="Phone number" GridPane.rowIndex="4">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
          <GridPane.margin>
-            <Insets left="10.0" />
+            <Insets left="20.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Gender" GridPane.rowIndex="4">
+      <Label text="Gender" GridPane.rowIndex="5">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
          <GridPane.margin>
-            <Insets left="10.0" />
+            <Insets left="20.0" />
          </GridPane.margin>
       </Label>
-      <Label fx:id="patientNameLabel" text="&lt;PatientName&gt;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Label fx:id="patientNameLabel" text="&lt;PatientName&gt;" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="dateOfBirthLabel" text="&lt;DoB&gt;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Label fx:id="dateOfBirthLabel" text="&lt;DoB&gt;" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="phoneLabel" text="&lt;Phone&gt;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Label fx:id="phoneLabel" text="&lt;Phone&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="genderLabel" text="&lt;Gender&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <Label fx:id="genderLabel" text="&lt;Gender&gt;" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <font>
             <Font size="14.0" />
          </font>
@@ -89,28 +90,42 @@
             <Insets bottom="10.0" />
          </GridPane.margin>
       </Label>
-      <Button fx:id="addTestBtn" mnemonicParsing="false" onAction="#addTestBtnAction" prefWidth="90.0" text="Add test" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Button fx:id="addTestBtn" mnemonicParsing="false" onAction="#addTestBtnAction" prefWidth="90.0" text="Add test" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="editTestBtn" mnemonicParsing="false" onAction="#editTestBtnAction" prefWidth="90.0" text="Edit Test" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <Button fx:id="editTestBtn" mnemonicParsing="false" onAction="#editTestBtnAction" prefWidth="90.0" text="Edit Test" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitBtnAction" prefWidth="90.0" text="Exit" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+      <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitBtnAction" prefWidth="90.0" text="Exit" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets left="30.0" />
          </GridPane.margin>
       </Button>
-      <TableView fx:id="testTabView" prefHeight="400.0" prefWidth="450.0" GridPane.columnSpan="3" GridPane.rowIndex="5">
+      <TableView fx:id="testTabView" prefHeight="400.0" prefWidth="480.0" GridPane.columnSpan="3" GridPane.rowIndex="6">
         <columns>
-          <TableColumn fx:id="dateCol" prefWidth="150.0" text="Date" />
-          <TableColumn fx:id="methodCol" prefWidth="150.0" text="Method" />
-            <TableColumn fx:id="resultCol" prefWidth="150.0" text="Result" />
+            <TableColumn fx:id="testIdCol" prefWidth="120.0" resizable="false" text="Test ID" />
+          <TableColumn fx:id="dateCol" prefWidth="120.0" resizable="false" text="Date" />
+          <TableColumn fx:id="methodCol" prefWidth="120.0" resizable="false" text="Method" />
+            <TableColumn fx:id="resultCol" prefWidth="120.0" resizable="false" text="Result" />
         </columns>
       </TableView>
+      <Label text="ID" GridPane.rowIndex="1">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="patientIdLabel" text="&lt;PatientID&gt;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
    <padding>
       <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />

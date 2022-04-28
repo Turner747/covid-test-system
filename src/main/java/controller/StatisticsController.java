@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.PatientTestStats;
+import view.MessageView;
 
 public class StatisticsController {
 
@@ -20,23 +21,23 @@ public class StatisticsController {
     private TableView<PatientTestStats> statTabView;
     
     @FXML
-    private TableColumn<PatientTestStats, ?> patNameCol;
+    private TableColumn<PatientTestStats, String> patNameCol;
 
     @FXML
-    private TableColumn<PatientTestStats, ?> totTestCol;
+    private TableColumn<PatientTestStats, Integer> totTestCol;
 
     @FXML
-    private TableColumn<PatientTestStats, ?> posTestCol;
+    private TableColumn<PatientTestStats, Integer> posTestCol;
     
     @FXML
-    private TableColumn<PatientTestStats, ?> negTestCol;
+    private TableColumn<PatientTestStats, Integer> negTestCol;
 
     @FXML
     private Button exitBtn;
 
     @FXML
     void exitBtnAction(ActionEvent event) {
-
+        MessageView.displayExitDialog(event);
     }
 
     @FXML

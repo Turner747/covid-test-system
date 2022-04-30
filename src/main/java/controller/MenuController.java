@@ -21,7 +21,7 @@ public class MenuController {
 
     @FXML
     void aboutBtnAction(ActionEvent event) {
-
+        MessageView.displayAboutDialog();
     }
 
     @FXML

@@ -5,5 +5,8 @@ module controller {
     requires transitive javafx.graphics;
 
     opens controller to javafx.fxml;
+    opens model to javafx.base;
     exports controller;
 }
+
+

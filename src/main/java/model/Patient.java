@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
+
 public class Patient {
     
     private int patientID;
@@ -96,6 +97,41 @@ public class Patient {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    /**
+     * convert the full gender to the single char for the database
+     * @return a single character string
+     */
+    public String getGenderDb() {
+        
+        if(this.gender.equals("Male"))
+            return "M";
+        else if(this.gender.equals("Female"))
+            return "F";
+        else if(this.gender.equals("Other"))
+            return "O";
+        else
+            return "";
+
+    }
+
+    /**
+     * convert gender value in database to full word
+     * @param gender the from from the database
+     */
+    public void setGenderDb(String gender) {
+
+        if(gender.equals("M"))
+            this.gender = "Male";
+        else if(gender.equals("F"))
+            this.gender = "Female";
+        else if(gender.equals("O"))
+            this.gender = "Other";
+        else
+            this.gender = "";
+        
+    }
+
 
     public String getPhoneNbr() {
         return phoneNbr;

@@ -11,7 +11,6 @@ import javafx.stage.WindowEvent;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.concurrent.TimeUnit;
 import java.io.IOException;
 
 import view.MessageView;
@@ -27,7 +26,7 @@ public class App extends Application {
     private static final String PWRD = "Asst-2-Password";
     private static final String HOST = "172.105.191.27";
    
-    public Connection conn = null;
+    public static Connection conn = null;
 
     private static Scene scene;
 
@@ -64,7 +63,6 @@ public class App extends Application {
             });
         }
 
-        
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -91,11 +89,9 @@ public class App extends Application {
 		
 		try {			
 			c = DriverManager.getConnection(URL, USER, PWRD);
-			System.out.println("Connection established.\n");
 			
 		} catch(Exception e){
-			System.err.println("Got an exception!");
-			System.err.println(e.getMessage());
+			MessageView.displayException(e, "Error connecting to database");
 		} 
 		
         return c;

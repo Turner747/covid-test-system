@@ -8,6 +8,7 @@ public class CovidTest {
     private LocalDate testDate;
     private String testMethod;
     private String testResult;
+    private int patientId;
 
     
     /**
@@ -18,6 +19,7 @@ public class CovidTest {
         this.testDate = LocalDate.now();
         this.testMethod = "not set";
         this.testResult = "not set";
+        this.patientId = 0;
     }
 
     /**
@@ -25,11 +27,13 @@ public class CovidTest {
      * @param testDate
      * @param testMethod
      * @param testResult
+     * @param patientId
      */
-    public CovidTest(LocalDate testDate, String testMethod, String testResult) {
+    public CovidTest(LocalDate testDate, String testMethod, String testResult, int patientId) {
         this.testDate = testDate;
         this.testMethod = testMethod;
         this.testResult = testResult;
+        this.patientId = patientId;
     }
 
     /**
@@ -38,12 +42,14 @@ public class CovidTest {
      * @param testDate
      * @param testMethod
      * @param testResult
+     * @param patientId
      */
-    public CovidTest(int covidTestID, LocalDate testDate, String testMethod, String testResult) {
+    public CovidTest(int covidTestID, LocalDate testDate, String testMethod, String testResult, int patientId) {
         this.covidTestID = covidTestID;
         this.testDate = testDate;
         this.testMethod = testMethod;
         this.testResult = testResult;
+        this.patientId = patientId;
     }
 
     public int getCovidTestID() {
@@ -76,6 +82,44 @@ public class CovidTest {
 
     public void setTestResult(String testResult) {
         this.testResult = testResult;
+    }
+
+    /**
+     * Used to convert full test result to single character string
+     * @return single character string
+     */
+    public String getTestResultDb() {
+        
+        if(this.testResult.equals("Positive"))
+            return "P";
+        else if(this.testResult.equals("Negative"))
+            return "N";
+        else
+            return "";
+
+    }
+
+    /**
+     * Converts single character string from DB to full word
+     * @param result single character string from database
+     */
+    public void setTestResultDb(String result) {
+
+        if(result.equals("P"))
+            this.testResult = "Positive";
+        else if(result.equals("N"))
+            this.testResult = "Negative";
+        else
+            this.testResult = "";
+        
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 
     @Override

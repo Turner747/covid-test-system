@@ -1,0 +1,15 @@
+controller\App$2.class
+controller\App.class
+model\CovidTest.class
+controller\App$1.class
+controller\StatisticsController.class
+controller\TestController.class
+model\Patient.class
+model\CovidTestModel.class
+model\PatientModel.class
+module-info.class
+model\PatientTestStatsModel.class
+view\MessageView.class
+controller\PatientController.class
+model\PatientTestStats.class
+controller\MenuController.class

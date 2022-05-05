@@ -30,7 +30,7 @@
       <Button fx:id="editBtn" mnemonicParsing="false" onAction="#editBtnAction" prefWidth="90.0" text="Edit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Button fx:id="viewBtn" mnemonicParsing="false" onAction="#viewBtnAction" prefWidth="90.0" text="View" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchBtnAction" prefWidth="90.0" text="Search" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-      <TextField fx:id="searchTxtField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <TextField fx:id="searchTxtField" onAction="#searchBtnAction" GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <TableView fx:id="patientTabView" GridPane.columnSpan="5" GridPane.rowIndex="2">
         <columns>
             <TableColumn fx:id="patientIdCol" prefWidth="65.0" text="PatientID" />

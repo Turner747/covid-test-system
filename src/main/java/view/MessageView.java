@@ -1,3 +1,9 @@
+// programmer: Joshua Turner
+// student id: s0258441
+// purpose: COIT12200
+// Assessment: Assessment 2
+// Date: 20 May 2022
+
 package view;
 
 import java.io.PrintWriter;
@@ -64,7 +70,7 @@ public class MessageView {
      * Display the close window dialog with close window and quit application options
      * @param e is the event used to display this window
      */
-    public static void displayExitDialog(Event e){
+    public static void displayExitDialogCloseBtn(Event e){
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, 
                     "Are you sure you want to quit?", 
                     ButtonType.YES,
@@ -84,6 +90,41 @@ public class MessageView {
             Node node = (Node) e.getSource();
             Stage currentStage = (Stage) node.getScene().getWindow();
             currentStage.close();
+        }
+        else if (confirm.isPresent() && confirm.get() == closeAllButton){
+            try{
+                App.conn.close();
+            }catch (Exception ex){
+                displayException(ex, "Error closing connection to database");
+            }
+            System.exit(0);
+        }
+        else {
+            e.consume();
+        }         
+    }
+
+    /**
+     * Display the close window dialog with close window and quit application options
+     * @param e is the event used to display this window
+     */
+    public static void displayExitDialog(Event e){
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION, 
+                    "Are you sure you want to quit?", 
+                    ButtonType.YES,
+                    ButtonType.NO);
+        a.setTitle("Close Program");
+        a.setContentText("Would you like to close this window or quit the application?");
+        
+        ButtonType closeButton = new ButtonType("Close this window");
+        ButtonType closeAllButton = new ButtonType("Quit application");
+        //ButtonType cancelButton = new ButtonType("Cancel". ButtonData.CANCEL_CLOSE);
+        
+        a.getButtonTypes().setAll(closeButton, closeAllButton, ButtonType.CANCEL);
+        
+        Optional<ButtonType> confirm = a.showAndWait();
+        if (confirm.isPresent() && confirm.get() == closeButton){
+            // close the window
         }
         else if (confirm.isPresent() && confirm.get() == closeAllButton){
             try{
@@ -412,8 +453,8 @@ public class MessageView {
         
         Dialog dialog = new Dialog<>();     // new dialog pane
         
-        dialog.setTitle("Covid Test System - Edit Test");      // add title
-        dialog.setHeaderText("Update Test");     // add header
+        dialog.setTitle("Covid Test System - New Test");      // add title
+        dialog.setHeaderText("Add Test");     // add header
         
         ButtonType addInputButton = new         // initialise add button
                 ButtonType("Add", ButtonData.OK_DONE);
@@ -524,8 +565,8 @@ public class MessageView {
         
         Dialog dialog = new Dialog<>();     // new dialog pane
         
-        dialog.setTitle("Covid Test System - New Test");      // add title
-        dialog.setHeaderText("Add Test");     // add header
+        dialog.setTitle("Covid Test System - Edit Test");      // add title
+        dialog.setHeaderText("Update Test");     // add header
         
         ButtonType addInputButton = new         // initialise add button
                 ButtonType("Update", ButtonData.OK_DONE);
@@ -649,10 +690,10 @@ public class MessageView {
         grid.add(new Label("s0258441"), 1, 1);        
         
         grid.add(new Label("Version Number:"), 0, 2);
-        grid.add(new Label("0"), 1, 2);
+        grid.add(new Label("1"), 1, 2);
         
         grid.add(new Label("Version Date:"), 0, 3);
-        grid.add(new Label("TBA"), 1, 3);
+        grid.add(new Label("20 May 2022"), 1, 3);
         
         a.getDialogPane().setContent(grid);    // add the grid to the dialog
         

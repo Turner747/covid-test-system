@@ -1,3 +1,9 @@
+// programmer: Joshua Turner
+// student id: s0258441
+// purpose: COIT12200
+// Assessment: Assessment 2
+// Date: 20 May 2022
+
 package controller;
 
 import java.time.LocalDate;
@@ -106,7 +112,7 @@ public class TestController {
 
     @FXML
     void exitBtnAction(ActionEvent event) {
-        MessageView.displayExitDialog(event);
+        MessageView.displayExitDialogCloseBtn(event);
     }
 
     private void refreshTestTable(){
@@ -115,6 +121,9 @@ public class TestController {
             ObservableList<CovidTest> testList = CovidTestModel.getTestListFromDB(
                                                                     currentPatient.getPatientID());
 
+            if(testList.size() == 0)
+                testTabView.setPlaceholder(new Label("No tests have been entered for this patient"));
+            
             testTabView.setItems(testList);
 
         }catch(Exception e){

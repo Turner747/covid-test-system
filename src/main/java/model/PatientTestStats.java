@@ -1,3 +1,9 @@
+// programmer: Joshua Turner
+// student id: s0258441
+// purpose: COIT12200
+// Assessment: Assessment 2
+// Date: 20 May 2022
+
 package model;
 
 public class PatientTestStats {

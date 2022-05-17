@@ -1,9 +1,16 @@
+// programmer: Joshua Turner
+// student id: s0258441
+// purpose: COIT12200
+// Assessment: Assessment 2
+// Date: 20 May 2022
+
 package controller;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -50,7 +57,7 @@ public class StatisticsController {
 
     @FXML
     void exitBtnAction(ActionEvent event) {
-        MessageView.displayExitDialog(event);
+        MessageView.displayExitDialogCloseBtn(event);
     }
 
     @FXML
@@ -58,6 +65,9 @@ public class StatisticsController {
         try{
             ObservableList<PatientTestStats> statsList = 
                 PatientTestStatsModel.getStatSearchResultsFromDB(searchTxtField.getText());
+
+            if(statsList.size() == 0)
+                statTabView.setPlaceholder(new Label("No patients found"));
 
             statTabView.setItems(statsList);
 
@@ -70,6 +80,9 @@ public class StatisticsController {
 
         try{
             ObservableList<PatientTestStats> statsList = PatientTestStatsModel.getTestStatListFromDB();
+
+            if(statsList.size() == 0)
+                statTabView.setPlaceholder(new Label("No patients have been entered into the database"));
 
             statTabView.setItems(statsList);
 

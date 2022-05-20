@@ -24,109 +24,114 @@ import view.MessageView;
 
 public class TestController {
 
-    public static Patient currentPatient = null;   // used to store the current patient who's details will be display
-    //public static Patient currentPatient = new Patient(1,"Joshua", "Turner", LocalDate.of(1994, 01, 16), "Male", "0427 644 922"); //used for testing purposes
+    public static Patient currentPatient = null;   // public object used to store the patient being displayed
+    
+    @FXML
+    private Button addTestBtn;      // add test button
 
     @FXML
-    private Button addTestBtn;
+    private Label dateOfBirthLabel; // date of birth label
 
     @FXML
-    private Label dateOfBirthLabel;
+    private Button editTestBtn;     // edit test button
 
     @FXML
-    private Button editTestBtn;
+    private Button exitBtn;     // exit test button
 
     @FXML
-    private Button exitBtn;
+    private Label genderLabel;  // gender label
 
     @FXML
-    private Label genderLabel;
+    private Label patientNameLabel;     // patient name label
 
     @FXML
-    private Label patientNameLabel;
+    private Label patientIdLabel;       // patient id label
 
     @FXML
-    private Label patientIdLabel;
+    private Label phoneLabel;       // phone label
 
     @FXML
-    private Label phoneLabel;
+    private TableView<CovidTest> testTabView;   // test table
 
     @FXML
-    private TableView<CovidTest> testTabView;
+    private TableColumn<CovidTest, Integer> testIdCol;      // test id column
 
     @FXML
-    private TableColumn<CovidTest, Integer> testIdCol;
+    private TableColumn<CovidTest, LocalDate> dateCol;      // date of test column
 
     @FXML
-    private TableColumn<CovidTest, LocalDate> dateCol;
+    private TableColumn<CovidTest, String> resultCol;       // result column
 
     @FXML
-    private TableColumn<CovidTest, String> resultCol;
+    private TableColumn<CovidTest, String> methodCol;       // method column
 
-    @FXML
-    private TableColumn<CovidTest, String> methodCol;
-
-    private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static DateTimeFormatter dateFormatter =    // date formatter for date of birth
+        DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @FXML
     void initialize(){ 
 
+        // construct column
         testIdCol.setCellValueFactory(new PropertyValueFactory<>("covidTestID"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("testDate"));
         resultCol.setCellValueFactory(new PropertyValueFactory<>("testResult"));
         methodCol.setCellValueFactory(new PropertyValueFactory<>("testMethod"));
 
-        try{
+        try{    // display patient information
             patientIdLabel.setText(String.valueOf(currentPatient.getPatientID()));
             patientNameLabel.setText(currentPatient.getFirstName() + " " + currentPatient.getLastName());
             dateOfBirthLabel.setText(dateFormatter.format(currentPatient.getDateOfBirth()));
             phoneLabel.setText(currentPatient.getPhoneNbr());
             genderLabel.setText(currentPatient.getGender());
-        }catch(Exception e){
+        }catch(Exception e){ // display error message
             MessageView.displayException(e, "Error displaying patient details");
         }
 
-        refreshTestTable();
+        refreshTestTable(); // fill test table
     }
 
+    // action taken when add test button is clicked
     @FXML
     void addTestBtnAction(ActionEvent event) {
-        MessageView.displayNewTestDialog(currentPatient.getPatientID());
+        MessageView.displayNewTestDialog(currentPatient.getPatientID()); //display new test dialog
 
-        refreshTestTable();
+        refreshTestTable(); // refresh test table with new test
     }
 
+    // action taken when edit test button is clicked
     @FXML
     void editTestBtnAction(ActionEvent event) {
         try{
-            CovidTest selectedTest = testTabView.getSelectionModel().getSelectedItem();
-            //CovidTest selectedTest = new CovidTest(1, LocalDate.of(2022, 04, 30), "PCR", "Positive", 1); //used for testing purposes
-            MessageView.displayEditTestDialog(selectedTest);
+            CovidTest selectedTest = testTabView.getSelectionModel().getSelectedItem(); // get selected test
             
-        }catch(Exception e){
+            MessageView.displayEditTestDialog(selectedTest); // display edit test dialog
+            
+        }catch(Exception e){    // display error message if no test selected
             MessageView.displayException(e, "No test selected");
         }
 
-        refreshTestTable();
+        refreshTestTable(); // update test table with updated test
     }
 
+    // action taken when exit test button is clicked
     @FXML
     void exitBtnAction(ActionEvent event) {
         MessageView.displayExitDialogCloseBtn(event);
     }
 
+    // get test for current patient patient and display them in the table
     private void refreshTestTable(){
 
         try{
-            ObservableList<CovidTest> testList = CovidTestModel.getTestListFromDB(
+            ObservableList<CovidTest> testList = CovidTestModel.getTestListFromDB(      // get list of tests
                                                                     currentPatient.getPatientID());
 
-            if(testList.size() == 0)
+            if(testList.size() == 0)    // if no tests are found, show message
                 testTabView.setPlaceholder(new Label("No tests have been entered for this patient"));
             
-            testTabView.setItems(testList);
+            testTabView.setItems(testList); // display tests in tabble
 
-        }catch(Exception e){
+        }catch(Exception e){    // display error if database query fails
             MessageView.displayException(e, "Error loading test table");
         }
     }

@@ -28,58 +28,61 @@ public class App extends Application {
 
     // database connection details
     private static final String DATABASE = "COVIDTESTDB";
-    private static final String USER = "PatientTestSystem";
-    private static final String PWRD = "Asst-2-Password";
-    private static final String HOST = "172.105.191.27";
+    private static final String USER = "root";
+    private static final String PWRD = "mypassword";
+    private static final String HOST = "localhost";
    
+    //database connection object to be used for all queries
     public static Connection conn = null;
 
+    // main scene for the application
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
 
-        Alert connMessage = MessageView.displayDBConnection(
+        Alert connMessage = MessageView.displayDBConnection(        // show connection message
                                         "Connecting...");
         connMessage.show();
 
         try{
-            conn = estDBConnection();
+            conn = estDBConnection(); //connect to the database
             
-        }catch(Exception e){
+        }catch(Exception e){   // if connection fails, show error message
             MessageView.displayException(e, "Database connection failed");
-        }
 
-        if(conn.equals(null)){
             MessageView.displayError("Failed to establish connection to the database");
             System.exit(0);
         }
-        else{
-            connMessage.setContentText("Connection successful");
-            connMessage.close();
 
-            scene = new Scene(loadFXML("MenuView"));
-            stage.setScene(scene);
-            stage.show();
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent e) {
-                    MessageView.displayExitDialog(e);
-                }
-            });
-        }
+        connMessage.setContentText("Connection successful");    // display success message
+        connMessage.close();    // close success message
+
+        // display the application and setup window event handle for close button
+        scene = new Scene(loadFXML("MenuView"));
+        stage.setScene(scene);
+        stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                MessageView.displayExitDialog(e);
+            }
+        });
 
     }
 
+    // used to load fxml into a scene object
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    // used to get fxml resource from file structure
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    // main method
     public static void main(String[] args) {
         launch();
     }

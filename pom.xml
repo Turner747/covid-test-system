@@ -36,9 +36,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
-                    
-                            
+                    <release>11</release>      
                 </configuration>
             </plugin>
             <plugin>
@@ -46,9 +44,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.6</version>
                 <configuration>
-                    
                     <mainClass>controller.App</mainClass>
-                            
                 </configuration>
  
                 <executions>
@@ -56,9 +52,7 @@
                         <!-- Default configuration for running -->
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
-                        
                     </execution>
-               
                 </executions>
             </plugin>
         </plugins>

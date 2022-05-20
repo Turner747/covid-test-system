@@ -14,32 +14,36 @@ import view.MessageView;
 public class MenuController {
 
     @FXML
-    private Button aboutBtn;
+    private Button aboutBtn;    // about button
 
     @FXML
-    private Button exitBtn;
+    private Button exitBtn;     // exit button
 
     @FXML
-    private Button patientBtn;
+    private Button patientBtn;     // patient button
 
     @FXML
-    private Button statisticsBtn;
+    private Button statisticsBtn;   // statistics button
 
+    // action taken when about button is clicked
     @FXML
     void aboutBtnAction(ActionEvent event) {
         MessageView.displayAboutDialog();
     }
 
+    // action taken when exit button is clicked
     @FXML
     void exitBtnAction(ActionEvent event) {
         MessageView.displayExitDialogCloseBtn(event);
     }
 
+    // action taken when patient button is clicked
     @FXML
     void patientBtnAction(ActionEvent event) {
         App.openNewWindow("PatientView", "Patients");
     }
 
+    // action taken when statistics button is clicked
     @FXML
     void statisticsBtnAction(ActionEvent event) {
         App.openNewWindow("StatisticsView", "Test Statistics");
